@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    //private final JwtService jwtService;
+    private final JwtService jwtService;
 
     @Override
     protected void doFilterInternal(
@@ -33,7 +33,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         jwt = authHeader.substring(7);
-        userEmail = //! To do extract user email fro jwt token;
+        //! To do extract user email fro jwt token;
+        userEmail = jwtService.extractUsername(jwt);
 
     }
 
